@@ -90,6 +90,24 @@ void SaiSieSeanceLPBB(int Reference, struct SeanceLPBB *UnRecord )
  return ;
 }
 
+-int RechercheLPBB(char * NomFichier, int Reference, struct SeanceLPBB *UnRecord)
+{
+
+	FILE * fp;
+
+	fp = fopen(NomFichier, "rb");
+
+	if (!fp)
+	{
+		return 0;
+	}
+	else //fichier ouvert
+	{
+		fread(, , , fp);
+
+	}
+}
+
 int NombreSeancesLPBB(char *NomFichier)
 {
  FILE *sortie ;
