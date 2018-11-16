@@ -1,5 +1,5 @@
 /******************************************
-  Loic Peters - Benjamin Belluz
+  Herman Vanstapel
   2017 Basé sur Fichiers
 *******************************************/
 
@@ -15,6 +15,7 @@ void AProposLPBB(char *Version,char *Nom1,char* Nom2)
  printf("Version : %s \n",Version ) ;
  printf("Nom1 : %s \n",Nom1 ) ;
  printf("Nom2 : %s \n",Nom2 ) ;
+ 
 }
 
 void DelNewLine(char *Chaine)
@@ -46,7 +47,10 @@ void AfficheEnteteSeanceLPBB()
  char Tampon[80] ;
  sprintf(Tampon,"%s","Ref" ) ;MonPrintf(Tampon,4,strlen(Tampon)) ;
  sprintf(Tampon,"%s","Film") ;    MonPrintf(Tampon,50,strlen(Tampon)) ;
- sprintf(Tampon,"%s","Places") ; MonPrintf(Tampon,6,strlen(Tampon)) ;
+ sprintf(Tampon,"%s","Places") ; MonPrintf(Tampon,10,strlen(Tampon)) ;
+ sprintf(Tampon,"%s","Date") ; MonPrintf(Tampon,20,strlen(Tampon)) ;
+ sprintf(Tampon,"%s","Lieu de tournage") ; MonPrintf(Tampon,30,strlen(Tampon)) ;
+ 
  printf("\n") ;
 }
 
@@ -55,7 +59,9 @@ void AfficheSeanceLPBB(struct SeanceLPBB   *UnRecord)
  char Tampon[80] ;
  sprintf(Tampon,"%d",UnRecord->Reference ) ;  MonPrintf(Tampon,4,strlen(Tampon)) ;
  sprintf(Tampon,"%s",UnRecord->Film) ;    MonPrintf(Tampon,50,strlen(Tampon)) ;
- sprintf(Tampon,"%d",UnRecord->Places) ; MonPrintf(Tampon,6,strlen(Tampon)) ;
+ sprintf(Tampon,"%d",UnRecord->Places) ; MonPrintf(Tampon,10,strlen(Tampon)) ; 
+ sprintf(Tampon,"%s",UnRecord->Date) ; MonPrintf(Tampon,20,strlen(Tampon)) ; 
+ sprintf(Tampon,"%s",UnRecord->LieuTournage) ; MonPrintf(Tampon,30,strlen(Tampon)) ;
  printf("\n") ;
 }
 
@@ -70,8 +76,14 @@ void SaiSieSeanceLPBB(int Reference, struct SeanceLPBB *UnRecord )
  printf("Saisie Places :") ;
  fgets(Tampon,sizeof Tampon,stdin ) ;
  UnRecord -> Places = atoi(Tampon) ;
+ printf("Saisie Date :") ;
+ fgets(UnRecord->Date,sizeof UnRecord->Date,stdin ) ;
+ printf("Saisie LieuTournage :") ;
+ fgets(UnRecord->LieuTournage,sizeof UnRecord->LieuTournage,stdin ) ;
  
- DelNewLine(UnRecord->Film) ;
+ DelNewLine(UnRecord->Film);
+ DelNewLine(UnRecord->LieuTournage) ;
+ DelNewLine(UnRecord->Date);
  AfficheEnteteSeanceLPBB() ;
  AfficheSeanceLPBB(UnRecord) ;
  printf("-----------------------\n") ;
@@ -187,25 +199,6 @@ void ListingFacturesLPBB(char *NomFichier)
  fclose(sortie) ;
 }
 
-int RechercheLPBB(char * NomFichier, int Reference, struct SeanceLPBB *UnRecord)
-{
-	
-	FILE * fp;
-	
-	fp = fopen (NomFichier, "rb");
-	
-	if(!fp)
-	{
-		return 0;
-	}
-	else //fichier ouvert
-	{
-		fread(, , , fp);
-		
-	}
-}
-
-
 int main()
 {
  char Choix ;
@@ -252,7 +245,7 @@ int main()
              break ;
    case '5': ListingFacturesLPBB("FactureLPBB") ;
 	     break ;
-   case '6': AProposLPBB("V 1","Peters","Belluz") ;
+   case '6': AProposLPBB("V 1","Peters Loïc","Belluz Benjamin") ;
              break ;
    
 	
