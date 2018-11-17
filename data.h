@@ -9,8 +9,8 @@ struct SeanceLPBB {
          int  Reference ;
 	 char Film[40] ;
 	 int  Places ;
-         char Date[10] ;
-		 char LieuTournage[10];
+         char Date[12] ;
+		 char LieuTournage[20];
 	} ;
 
 struct FactureLPBB

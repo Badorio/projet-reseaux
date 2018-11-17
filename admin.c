@@ -1,5 +1,5 @@
 /******************************************
-  Herman Vanstapel
+  Loic Peters - Benjamin Belluz
   2017 Basé sur Fichiers
 *******************************************/
 
@@ -88,24 +88,6 @@ void SaiSieSeanceLPBB(int Reference, struct SeanceLPBB *UnRecord )
  AfficheSeanceLPBB(UnRecord) ;
  printf("-----------------------\n") ;
  return ;
-}
-
--int RechercheLPBB(char * NomFichier, int Reference, struct SeanceLPBB *UnRecord)
-{
-
-	FILE * fp;
-
-	fp = fopen(NomFichier, "rb");
-
-	if (!fp)
-	{
-		return 0;
-	}
-	else //fichier ouvert
-	{
-		fread(, , , fp);
-
-	}
 }
 
 int NombreSeancesLPBB(char *NomFichier)
@@ -259,7 +241,15 @@ int main()
              }
    case '2': ListingSeancesLPBB("SeancesLPBB") ;
              break ;
-   case '3':   	
+   case '3':   
+   			printf("Saisie Reference :") ;
+			fgets(Tampon,sizeof Tampon,stdin ) ;
+			Numero= atoi(Tampon) ;
+			if(RechercheLPBB("SeancesLPBB",Numero,&UnRecord)==1)
+			{
+				AfficheEnteteSeanceLPBB();
+				AfficheSeanceLPBB(&UnRecord);
+			}
              break ;
    case '5': ListingFacturesLPBB("FactureLPBB") ;
 	     break ;

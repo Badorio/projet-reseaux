@@ -5,6 +5,4 @@
 #include "data.h"
 
 void AProposServeurLPBB(char *Version,char *Nom1,char* Nom2) ;
-#if 0
 int RechercheLPBB(char* NomFichier,int Reference ,struct SeanceLPBB *UnRecord) ;
-#endif
